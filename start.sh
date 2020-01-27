@@ -44,20 +44,12 @@ rm *.xxx >/dev/null 2>&1
 exit 0
 elif [ $ch -eq 2 ];then
 clear
-apt install git -y
-echo -e "\e[1;34m Downloading Files..."
+cd 
+rm -rf Reborn
+clear
 git clone https://github.com/demoza/Reborn/
-if [[ -s Reborn/start.sh ]];then
 cd Reborn
-cp -r -f * .. > temp
-cd ..
-rm -rf  Reborn >> temp
-rm update.demoza >> temp
-rm temp
 chmod +x start.sh
-fi
-echo -e "\e[1;32m Reborn Will Restart Now..."
-echo -e "\e[1;34m Press Enter To Proceed To Restart..."
 read a6
 ./start.sh
 exit
