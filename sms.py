@@ -16,14 +16,6 @@ proxies = {
     'http': '91.225.104.182:80'
 }
 
-def clr():
-    if os.name == 'nt':
-        os.system('cls')
-    else:
-        os.system('clear')
-        def banner():
-    
-    clr()
 print(Fore.GREEN + Back.BLACK + Style.BRIGHT + '''
  ______   _______  _______  _______  _______  _______ 
 (  __  \ (  ____ \(       )(  ___  )/ ___   )(  ___  )
