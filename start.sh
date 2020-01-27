@@ -38,11 +38,9 @@ read ch
 if [ $ch -eq 1 ];then
 clear
 echo -e "\e[1;32m"
-rm *.xxx >/dev/null 2>&1
-python3 bomber.py
-rm *.xxx >/dev/null 2>&1
+python sms.py
 exit 0
-elif [ $ch -eq 2 ];then
+if [ $ch -eq 2 ];then
 clear
 cd 
 rm -rf Reborn
