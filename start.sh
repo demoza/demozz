@@ -40,7 +40,7 @@ clear
 echo -e "\e[1;32m"
 python sms.py
 exit 0
-if [ $ch -eq 2 ];then
+elif [ $ch -eq 2 ];then
 clear
 cd 
 rm -rf Reborn
@@ -48,10 +48,11 @@ git clone https://github.com/demoza/Reborn
 clear
 cd Reborn
 chmod +x start.sh
+fi
 echo -e "\e[1;32m All The Required Packages Will Be Installed..."
 echo -e "\e[1;34m Please Restart..."
 exit 0
-if [ $ch -eq 99 ];then
+elif [ $ch -eq 99 ];then
 clear
 echo -e "\e[1;31m"
 figlet Reborn
