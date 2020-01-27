@@ -16,7 +16,7 @@ proxies = {
     'http': '91.225.104.182:80'
 }
 
-print(Fore.GREEN + Style.BRIGHT '''
+print(Fore.GREEN + Back.BLACK + Style.BRIGHT + '''
  ______   _______  _______  _______  _______  _______ 
 (  __  \ (  ____ \(       )(  ___  )/ ___   )(  ___  )
 | (  \  )| (    \/| () () || (   ) |\/   )  || (   ) |
