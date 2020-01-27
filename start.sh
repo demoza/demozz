@@ -51,7 +51,7 @@ chmod +x start.sh
 echo -e "\e[1;32m All The Required Packages Will Be Installed..."
 echo -e "\e[1;34m Please Restart..."
 exit 0
-elif [ $ch -eq 99 ];then
+if [ $ch -eq 99 ];then
 clear
 echo -e "\e[1;31m"
 figlet Reborn
