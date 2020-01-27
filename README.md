@@ -1,8 +1,8 @@
-#Disclaimer.
+# Disclaimer.
 The author is not responsible for damaged phones. Apply this miracle only in the study tour purposes.
 
 
-#For Termux:
+# For Termux:
 git clone https://github.com/demoza/Reborn/
 
 Go to the directory:
