@@ -23,7 +23,6 @@ echo -e "\e[1;32m Requirements Installed Successfully...  \e[0m"
 echo "This App Was Last Updated On"$date >update.demoza
 echo "SuperDorker Was Created By SpeedX... Any Queries Mail harunbusiness@aol.com " >>update.demoza
 fi
-for (( start=5;start>=5;start++ ))
 do
 clear
 echo -e "\e[1;32m"
