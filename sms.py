@@ -393,9 +393,7 @@ while True:
 		print('[-] Delivery Requests Failed!')
 
 	try:
-		
-		print('{}completed tours =  '.format(iteration))
-                iteration += 1
-                
+		iteration += 1
+		print(' = {}completed tours '.format(iteration)) 
 	except:
 		break
