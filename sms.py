@@ -5,19 +5,6 @@ import urllib.request
 init()
 
 
-def update():
-    stuff_to_update = ['sms.py', '.version']
-    for fl in stuff_to_update:
-        dat = urllib.request.urlopen(
-            "https://raw.githubusercontent.com/demoza/Reborn/master/" + fl).read()
-        file = open(fl, 'wb')
-        file.write(dat)
-        file.close()
-    print('\n\t\tUpdated Successfull !!')
-    print('\tPlease Run Again...')
-    exit()
-
-
 proxies = {
     'http':'113.128.11.93:9999',
     'http': '193.136.119.21:80',
@@ -62,6 +49,17 @@ try:
 except Exception:
     pass
     
+def update():
+    stuff_to_update = ['sms.py', '.version']
+    for fl in stuff_to_update:
+        dat = urllib.request.urlopen(
+            "https://raw.githubusercontent.com/demoza/Reborn/master/" + fl).read()
+        file = open(fl, 'wb')
+        file.write(dat)
+        file.close()
+    print('\n\t\tUpdated Successfull !!')
+    print('\tPlease Run Again...')
+    exit()
 
 a = input('Select target Number :')
 b = 999
