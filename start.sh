@@ -12,7 +12,7 @@ echo .
 apt install figlet toilet python curl -y
 apt install python3-pip
 pip install -r requirements.txt
-echo Made By DEMOZA >demoza.speedx
+echo Made By DEMOZA >update.demoza
 echo Requirements Installed....
 echo Press Enter To Continue...
 read upd
@@ -24,9 +24,9 @@ clear
 echo -e "\e[1;31m"
 figlet Reborn
 toilet -f mono12 -F border Demoza
-echo -e "\e[4;34m   Created By Demoza \e[0m"
-echo -e "\e[1;32m     Mail: harunbusiness@aol.com \e[0m"
-echo -e "\e[4;32m       YouTube Page: https://www.youtube.com/HarunMISTIK \e[0m"
+echo -e "\e[4;34mCreated By Demoza \e[0m"
+echo -e "\e[1;32mMail: harunbusiness@aol.com \e[0m"
+echo -e "\e[4;32mYouTube Page: https://www.youtube.com/HarunMISTIK \e[0m"
 echo " "
 echo "Press 1  To  Start  SMS Bomber "
 echo "Press 2  To  Update SMS Bomber "
