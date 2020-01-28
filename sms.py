@@ -94,7 +94,7 @@ _phoneGorzdrav = _phone[1:4]+') '+_phone[4:7]+'-'+_phone[7:9]+'-'+_phone[9:11]
 
 
 
-iteration = 2
+iteration = 0
 
 
     
@@ -392,10 +392,10 @@ while True:
 	except:
 		print('[-] Delivery Requests Failed!')
 
-
-
 	try:
-		iteration += 1
-		print(('{}completed tours = ').format(iteration))
+		
+		print('completed tours =  )
+                iteration += 2
+                print('completed tours =  )
 	except:
-		break
+		exit()
