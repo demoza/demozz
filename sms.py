@@ -4,6 +4,17 @@ from time import sleep
 import urllib.request
 init()
 
+def checkinternet():
+    res = False
+    try:
+        requests.get('https://www.google.com', verify=True)
+        res = False
+    except Exception:
+        res = True
+    if res:
+        print("\n\n\tIt seems That Your Internet Speed is Slow or You Are Using Proxies..")
+        banner()
+        exit()
 
 proxies = {
     'http':'113.128.11.93:9999',
