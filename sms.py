@@ -97,16 +97,7 @@ _phoneGorzdrav = _phone[1:4]+') '+_phone[4:7]+'-'+_phone[7:9]+'-'+_phone[9:11]
 iteration = 2
 
 
-    while True:
-        while os.path.exists('proc.xxx'):
-            time.sleep(0.5)
-        os.system('touch proc.xxx')
-            continue
-        os.system('rm proc.xxx >/dev/null 2>&1')
-        iteration += 1
-        time.sleep(float(dl))
-        if (iteration > maxlim):
-            exit()
+    
 
 
 
