@@ -98,9 +98,6 @@ while True:
 		print('[-] Не отправлено!')
 
 	try:
-		requests.post('https://rutube.ru/api/accounts/sendpass/phone', data={'phone': '+'+_phone})
-		print('[+] Rutube отправлено!')
-	except:
 		requests.post('https://www.citilink.ru/registration/confirm/phone/+'+_phone+'/')
 		print('[+] Citilink отправлено!')
 
