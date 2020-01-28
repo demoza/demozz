@@ -395,7 +395,7 @@ while True:
 	try:
 		
 		print('completed tours =  ')
-                iteration += 2
-                print('goodby')
+                iteration += 0
+                
 	except:
-		exit()
+		break
