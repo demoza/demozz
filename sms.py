@@ -96,7 +96,6 @@ _phoneGorzdrav = _phone[1:4]+') '+_phone[4:7]+'-'+_phone[7:9]+'-'+_phone[9:11]
 
 iteration = 2
 
-def infinite(_phone max):
     global iteration
     while True:
         while os.path.exists('proc.xxx'):
