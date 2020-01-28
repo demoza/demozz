@@ -394,7 +394,7 @@ while True:
 
 	try:
 		
-		print('completed tours =  ')
+		print('{}completed tours =  '.format(iteration))
                 iteration += 1
                 
 	except:
