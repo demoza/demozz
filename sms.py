@@ -15,7 +15,46 @@ def checkinternet():
         print("\n\n\tIt seems That Your Internet Speed is Slow or You Are Using Proxies..")
         banner()
         exit()
+def update():
+    stuff_to_update = ['sms.py', '.version']
+    for fl in stuff_to_update:
+        dat = urllib.request.urlopen(
+            "https://raw.githubusercontent.com/demoza/Reborn/master/" + fl).read()
+        file = open(fl, 'wb')
+        file.write(dat)
+        file.close()
+    print('\n\t\tUpdated Successfull !!!!')
+    print('\tPlease Run The Script Again...')
+    exit()
 
+try:
+    urllib.request.urlopen('https://www.google.com')
+except Exception:
+    print("You are not connected To Internet!!!")
+    print("\tPlease Connect To Internet To Continue...\n")
+    input('Exiting....\n Press Enter To Continue....')
+    exit()
+print('\tChecking For Updates...')
+ver = urllib.request.urlopen(
+    "https://raw.githubusercontent.com/demoza/Reborn/master/.version").read().decode('utf-8')
+verl = ''
+try:
+    verl = open(".version", 'r').read()
+except Exception:
+    pass
+if ver != verl:
+    print('\t\tUpdate is Available....')
+    print('\tStarting Update...')
+    update()
+print("Your Version is Up-To-Date")
+try:
+    noti = urllib.request.urlopen(
+        "https://raw.githubusercontent.com/demoza/Reborn/master/.notify").read().decode('utf-8')
+    noti = noti.upper().strip()
+    if len(noti) > 10:
+        print('\n\n\tNOTIFICATION: ' + noti + '\n\n')
+except Exception:
+    pass
 proxies = {
     'http':'113.128.11.93:9999',
     'http': '193.136.119.21:80',
@@ -37,40 +76,6 @@ print(Fore.GREEN + Back.BLACK + Style.BRIGHT + '''
 (______/ (_______/|/     \|(_______)(_______/|/     \|                                              
 ''' + Style.RESET_ALL)
 
-print('\tChecking For Updates...')
-ver = urllib.request.urlopen(
-    "https://raw.githubusercontent.com/demoza/Reborn/master/.version").read().decode('utf-8')
-verl = ''
-try:
-    verl = open(".version", 'r').read()
-except Exception:
-    pass
-if ver != verl:
-    print('\n\t\tAn Update is Available....')
-    print('\tStarting Update...')
-    update()
-print("Your Version is Up-To-Date")
-print('\n\n\t\t\tStarting Reborn...\n\n')
-try:
-    noti = urllib.request.urlopen(
-        "https://raw.githubusercontent.com/demoza/Reborn/master/.notify").read().decode('utf-8')
-    noti = noti.upper().strip()
-    if len(noti) > 10:
-        print('\n\n\tNOTIFICATION: ' + noti + '\n\n')
-except Exception:
-    pass
-    
-def update():
-    stuff_to_update = ['sms.py', '.version']
-    for fl in stuff_to_update:
-        dat = urllib.request.urlopen(
-            "https://raw.githubusercontent.com/demoza/Reborn/master/" + fl).read()
-        file = open(fl, 'wb')
-        file.write(dat)
-        file.close()
-    print('\n\t\tUpdated Successfull !!')
-    print('\tPlease Run Again...')
-    exit()
 
 a = input('Select target Number :')
 b = 999
