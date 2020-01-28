@@ -2,3 +2,6 @@ urllib3
 python
 python3
 nano
+requests 
+figlet
+toilet
