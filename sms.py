@@ -15,6 +15,12 @@ print(Fore.GREEN + Back.BLACK + Style.BRIGHT + '''
 (______/ (_______/|/     \|(_______)(_______/|/     \|                                              
 ''' + Style.RESET_ALL)
 
+
+            
+def shutdown(signal, frame):
+    print ('\n\033[1;31mCtrl+C was pressed, shutting down!\033[0m')
+    sys.exit()
+    
 def checkinternet():
     res = False
     try:
@@ -70,7 +76,6 @@ except Exception:
     
     
 _phone = input('Enter Target Number -->> ')
-
 _name = ''
 for x in range(12):
 	_name = _name + random.choice(list('123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'))
@@ -84,7 +89,28 @@ _phoneOstin = '+'+_phone[0]+'+('+_phone[1:4]+')'+_phone[4:7]+'-'+_phone[7:9]+'-'
 _phonePizzahut = '+'+_phone[0]+' ('+_phone[1:4]+') '+_phone[4:7]+' '+_phone[7:9]+' '+_phone[9:11]
 _phoneGorzdrav = _phone[1:4]+') '+_phone[4:7]+'-'+_phone[7:9]+'-'+_phone[9:11]
 
-iteration = 0
+
+
+
+
+
+iteration = 5
+
+def infinite(_phone max):
+    global iteration
+    while True:
+        while os.path.exists('proc.xxx'):
+            time.sleep(0.5)
+        os.system('touch proc.xxx')
+            continue
+        os.system('rm proc.xxx >/dev/null 2>&1')
+        iteration += 1
+        time.sleep(float(dl))
+        if (iteration > maxlim):
+            exit()
+
+
+
 while True:
 	_email = _name+f'{iteration}'+'@gmail.com'
 	email = _name+f'{iteration}'+'@gmail.com'
