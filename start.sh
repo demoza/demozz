@@ -41,23 +41,27 @@ clear
 cd
 rm -rf Reborn
 git clone https://github.com/demoza/Reborn
-cd Reborn
 clear
 echo "[+] Success Please Restart Tool"
 exit 0
 elif [ $ch -eq 3 ];then
 clear
+chmod +x start.sh
 figlet Reborn
 echo "Invaild Input Press Enter To Go Home"
 read a3
-./TBomb.sh
+./start.sh
 exit
 elif [ $ch -eq 4 ];then
 clear
+chmod +x start.sh
 figlet Reborn
 echo "Invaild Input Press Enter To Go Home"
 read a3
 clear
+read a3
+./start.sh
+exit
 elif [ $ch -eq 99 ];then
 clear
 echo -e "\e[1;31m"
