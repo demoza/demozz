@@ -24,7 +24,7 @@ git clone https://github.com/demoza/Reborn/
  In paragraph "Enter Number" write the phone number with "+"
  Bomber launched!
 # Donators:
- [@] None
+ [@] AqualreX • 5$
 
 # Contact Me:
                   Mail: harunbusiness@aol.com 
