@@ -8,8 +8,7 @@ echo "All Requirements Found...."
 else
 echo 'Installing Requirements....'
 echo .
-echo .
-apt install figlet toilet python curl -y
+pkg install pip2
 apt install python3-pip
 pip install -r requirements.txt
 echo Made By DEMOZA >update.demoza
