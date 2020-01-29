@@ -1,5 +1,6 @@
 urllib3
 python
+python2
 python3
 nano
 requests 
