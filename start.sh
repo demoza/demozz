@@ -10,7 +10,7 @@ echo 'Installing Requirements....'
 echo .
 pkg install pip2
 apt install python3-pip
-pip install -r requirements.txt
+pip2 install -r requirements.txt
 echo Made By DEMOZA >update.demoza
 echo Requirements Installed....
 echo Press Enter To Continue...
